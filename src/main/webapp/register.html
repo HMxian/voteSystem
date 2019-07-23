@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	
+	<meta name="author" content="DeathGhost" />
+	<link rel="stylesheet" type="text/css" href="css/dmaku.css"/>
+	<script src="js/jquery.js"></script>
+	<script src="js/verificationNumbers.js" ></script>
+	<script src="js/Particleground.js" ></script>
+	<script>
+	$(document).ready(function() {
+	  //粒子背景特效
+	  $('body').particleground({
+		dotColor: '#5cbdaa',
+		lineColor: '#5cbdaa'
+	  });
+	  //验证码
+	  createCode();
+	  //测试提交，对接程序删除即可
+	  $(".submit_btn").click(function(){
+		  location.href="javascrpt:;"/*tpa=http://***index.html*/;
+		  });
+	});
+	</script>
+</head>
+
+<body>
+	<form method="post" action="UserServlet?flag=register" onsubmit="return checkForm(this);">
+<dl class="admin_login">
+ <dt>
+  <strong>管理系统</strong>
+  <em>Management System</em>
+ </dt>
+ <dd class="user_icon">
+  <input type="text" placeholder="账号" name="userName" class="login_txtbx"/>
+ </dd>
+ <dd class="pwd_icon">
+  <input type="password" id="pwd1" placeholder="密码" name="passWord"class="login_txtbx"/>
+ </dd>
+ <dd class="pwd_icon" >
+  <input type="password" id="pwd2" placeholder="再次输入密码" name="passWord" onblur="validate();" class="login_txtbx"/>
+  
+ </dd>
+<div id="tishi" style="width:200px;"></div>
+ <dd class="val_icon">
+  <div class="checkcode">
+    <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx">
+    <canvas class="J_codeimg" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+  </div>
+  <input type="button" value="验证码核验" class="ver_btn" onClick="validate();">
+ </dd>
+ <dd>
+  <input type="submit" value="立即注册" class="submit_btn"/>
+ 
+ </dd>
+  <a href="login.html">返回登录</a>
+</dl>
+</form>
+     <script>
+              function validate() {
+                  var pwd1 = document.getElementById("pwd1").value;
+                  var pwd2 = document.getElementById("pwd2").value;
+
+    		<!-- 对比两次输入的密码 -->
+                  if(pwd1 == pwd2) {
+                      document.getElementById("tishi").innerHTML="<font color='green'>两次密码相同</font>";
+                    
+                  }
+                  else {
+                      document.getElementById("tishi").innerHTML="<font color='red'>两次密码不相同</font>";
+                      //document.getElementById("pwd2").setAttribute("placeholder","验证码错误");
+                  }
+              }
+          </script>
+
+</body>
+
+</html>
